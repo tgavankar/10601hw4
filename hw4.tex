@@ -91,53 +91,43 @@ P(A, B, C, E, F) &=& P(A)P(B|A)P(C)f_D(A, B, C, E, F)\\
 
 \part{2}
 \begin{eqnarray*}
-P(A, B, C, E, F) &=& P(A)P(B|A)P(C)f_D(A, B, C, E, F)\\
-\\
-f_B(A, C, D) &=& \sum_B P(B|A)P(D|A,B,C)\\
-f_B(A, C, D) &=& (0.5)P(D|A,B,C) + (0.5)P(D|A,\neg B,C)\\
-&=& 0.5*0.6 + 0.5*0.1 = 0.35\\
-f_B(A, C, \neg D) &=& (0.5)P(\neg D|A,B,C) + (0.5)P(\neg D|A,\neg B,C)\\
-&=& 0.5*0.4 + 0.5*0.9 = 0.65\\
-f_B(A, \neg C, D) &=& (0.5)P(D|A,B,\neg C) + (0.5)P(D|A,\neg B,\neg C)\\
-&=& 0.5*0.9 + 0.5*0.1 = 0.5\\
-f_B(A, \neg C, \neg D) &=& (0.5)P(\neg D|A,B,\neg C) + (0.5)P(\neg D|A,\neg B,\neg C)\\
-&=& 0.5*0.1 + 0.5*0.9 = 0.5\\
-f_B(\neg A, C, D) &=& (0.1)P(D|\neg A,B,C) + (0.9)P(D|\neg A,\neg B,C)\\
-&=& 0.1*0.3 + 0.9*0.7 = 0.66\\
-f_B(\neg A, C, \neg D) &=& (0.1)P(\neg D|\neg A,B,C) + (0.9)P(\neg D|\neg A,\neg B,C)\\
-&=& 0.1*0.7 + 0.9*0.3 = 0.34\\
-f_B(\neg A, \neg C, D) &=& (0.1)P(D|\neg A,B,\neg C) + (0.9)P(D|\neg A,\neg B,\neg C)\\
-&=& 0.1*0.5 + 0.9*0.6 = 0.59\\
-f_B(\neg A, \neg C, \neg D) &=& (0.1)P(\neg D|\neg A,B,\neg C) + (0.9)P(\neg D|\neg A,\neg B,\neg C)\\
-&=& 0.1*0.5 + 0.9*0.4 = 0.41\\
-\\
-P(A, C, E, F) &=& \sum_D P(A)P(C)P(E|D)P(F|D)f_B(A, C, D)\\
-\\
-f_A(C, D)  &=& \sum_A P(A)f_B(A, C, D)\\
-f_A(C, D) &=& (0.6)f_B(A, C, D) + (0.4)f_B(\neg A, C, D)\\
-&=& 0.6*0.35 + 0.4*0.66 = 0.474\\
-f_A(C, \neg D) &=& (0.6)f_B(A, C, \neg D) + (0.4)f_B(\neg A, C, \neg D)\\
-&=& 0.6*0.65 + 0.4*0.34 = 0.526\\
-f_A(\neg C, \neg D) &=& (0.6)f_B(A, \neg C, \neg D) + (0.4)f_B(\neg A, \neg C, \neg D)\\
-&=& 0.6*0.5 + 0.4*0.41 = 0.464\\
-f_A(\neg C, D) &=& (0.6)f_B(A, \neg C, D) + (0.4)f_B(\neg A, \neg C, D)\\
-&=& 0.6*0.5 + 0.4*0.59 = 0.536\\
-\\
-P(C, E, F) &=& \sum_D P(C)P(E|D)P(F|D)f_A(C, D)\\
-\\
-f_C(D) &=& \sum_C P(C)f_A(C, D)\\
-f_C(D) &=& (0.8)f_A(C, D) + (0.2)f_A(\neg C, D)\\
-&=& 0.8*0.474 + 0.2*0.536 = 0.4864\\
-f_C(\neg D) &=& (0.8)f_A(C, \neg D) + (0.2)f_A(\neg C, \neg D)\\
-&=& 0.8*0.526 + 0.2*0.464 = 0.5136\\
+f_D(A, B, C, E, F) &=& \sum_D P(D|A,B,C)P(E|D)P(F|D)\\
+f_D(A, B, C, E, F) &=& 0.6*0.5*0.9 + 0.4*0.6*0.8
+f_D(A, B, \neg C, E, F) &=& 0.9*0.5*0.9+.41*0.6*0.8\\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+f_D(A, \neg B, C, E, F) &=&
+f_D(A, \neg B, \neg C, E, F) &=&
+f_D(\neg A, B, C, E, F) &=&
+f_D(\neg A, B, \neg C, E, F) &=&
+f_D(\neg A, \neg B, C, E, F) &=&
+f_D(\neg A, \neg B, \neg C, E, F) &=&
 \end{eqnarray*}
 
 \begin{eqnarray*}
-P(E, F) &=& \sum_D P(E|D)P(F|D)f_C(D)\\
-&=& (0.5)(0.9)f_C(D) + (0.6)(0.8)f_C(\neg D)\\
-&=& 0.5*0.9*0.4864 + 0.6*0.8*0.5136\\
-&=& 0.465408\\
+P(A, B, C, E, F) &=& P(A)P(B|A)P(C)f_D(A, B, C, E, F)\\
+\\
+f_B(A, C, E, F) &=& \sum_B P(B|A)f_D(A, B, C, E, F)\\
+f_B(A, C, E, F) &=& 0.5*f_D(A, B, C, E, F) + 0.5*f_D(A, \neg B, C, E, F)
+f_B(\neg A, C, E, F) &=& 0.1*f_D(\neg A, B, C, E, F) + 0.9*f_D(\neg A, \neg B, C, E, F)
+f_B(A, \neg C, E, F) &=& 0.5*f_D(A, B, \neg C, E, F) + 0.5*f_D(A, \neg B, \neg C, E, F)
+f_B(\neg A, \neg C, E, F) &=& 0.1* f_D(\neg A, B, \neg C, \neg C, E, F) + 0.9*f_D(\neg A, \neg B, \neg C, E, F)
+\\
+P(A, C, E, F) &=&  P(A)P(C)f_B(A, C, E, F)\\
+\\
+f_A(C, E, F)  &=& \sum_A P(A)f_B(A, C, E, F)\\
+f_A(C, E, F) &=& 0.6*f_B(A, C, E, F) + 0.4*f_B(\neg A, C, E, F)
+f_A(\neg C, E, F) &=& 0.6*f_B(A, \neg C, E, F) + 0.4*f_B(\neg A, \neg C, E, F)
+\\
+P(C, E, F) &=& P(C)f_A(C, E, F)\\
+\\
+f_C(E, F) &=& \sum_C P(C)f_A(C, E, F)\\
+&=& 0.8*f_A(C, E, F) + 0.2*f_A(\neg C, E, F)
+
+
+P(E, F) &=& f_C(E, F)\\
+
 \end{eqnarray*}
+
+
 
 So, we have performed elimination in the given order and solved for $P(E, F)$. 
 
