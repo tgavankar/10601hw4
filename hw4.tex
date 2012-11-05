@@ -76,54 +76,70 @@ False, they are d-separated because the path EDHGFAK does not have any colliders
 \question{1.b}{Bayesian Network: Variable Elimination}
 \part{1}
 \begin{eqnarray*}
-P(A, B, C, E, F) &=& P(A, B, C, D, E, F) + P(A, B, C, \neg{D}, E, F)\\
+P(A, B, C, D, E, F) &=& P(A)P(B|A)P(C)P(D|A,B,C)P(E|D)P(F|D)\\
+f_D(A, B, C, E, F) &=& \sum_D P(D|A,B,C)P(E|D)P(F|D)\\
+P(A, B, C, E, F) &=& P(A)P(B|A)P(C)f_D(A, B, C, E, F)\\
 &=& P(A)P(B|A)P(C)P(D|A,B,C)P(E|D)P(F|D)\\
 &+& P(A)P(B|A)P(C)P(\neg{D}|A,B,C)P(E|\neg{D})P(F|\neg{D})\\
-&=& P(A)P(B|A)P(C)(P(D|A,B,C)P(E|D)P(F|D) + P(\neg{D}|A,B,C)P(E|\neg{D})P(F|\neg{D}))\\
-&=& P(A)P(B|A)P(C)(P(D|A,B,C)P(E|D)P(F|D) + (1-P(D|A,B,C))P(E|\neg{D})P(F|\neg{D}))\\
+&=& P(A)P(B|A)P(C)(P(D|A,B,C)P(E|D)P(F|D)\\
+&+& P(\neg{D}|A,B,C)P(E|\neg{D})P(F|\neg{D}))\\
+&=& P(A)P(B|A)P(C)(P(D|A,B,C)P(E|D)P(F|D)\\
+&+& (1-P(D|A,B,C))P(E|\neg{D})P(F|\neg{D}))\\
 &=& (0.6)(0.5)(0.8)((0.6)(0.5)(0.9) + (1-(0.6))(0.6)(0.8))\\
 &=& 0.11088\\
 \end{eqnarray*}
 
 \part{2}
 \begin{eqnarray*}
-P(A, B, C, E, F) &=& \sum_D P(A)P(B|A)P(C)P(D|A,B,C)P(E|D)P(F|D)\\
-
+P(A, B, C, E, F) &=& P(A)P(B|A)P(C)f_D(A, B, C, E, F)\\
+\\
 f_B(A, C, D) &=& \sum_B P(B|A)P(D|A,B,C)\\
-f_B(A, C, D) &=& (0.5)P(D|A,B,C) + (0.5)P(D|A,\neg B,C)
-f_B(A, C, \neg D) &=& (0.5)P(D|A,B,C) + (0.5)P(D|A,\neg B,C) ///////////////////////// LEFT OFF HERE
-f_B(A, \neg C, D) &=& (0.5)P(D|A,B,C) + (0.5)P(D|A,\neg B,C)
-f_B(A, \neg C, \neg D) &=& (0.5)P(D|A,B,C) + (0.5)P(D|A,\neg B,C)
-f_B(\neg A, C, D) &=& (0.5)P(D|A,B,C) + (0.5)P(D|A,\neg B,C)
-f_B(\neg A, C, \neg D) &=& (0.5)P(D|A,B,C) + (0.5)P(D|A,\neg B,C)
-f_B(\neg A, \neg C, D) &=& (0.5)P(D|A,B,C) + (0.5)P(D|A,\neg B,C)
-f_B(\neg A, \neg C, \neg D) &=& (0.5)P(D|A,B,C) + (0.5)P(D|A,\neg B,C)
-
-
-
+f_B(A, C, D) &=& (0.5)P(D|A,B,C) + (0.5)P(D|A,\neg B,C)\\
+&=& 0.5*0.6 + 0.5*0.1 = 0.35\\
+f_B(A, C, \neg D) &=& (0.5)P(\neg D|A,B,C) + (0.5)P(\neg D|A,\neg B,C)\\
+&=& 0.5*0.4 + 0.5*0.9 = 0.65\\
+f_B(A, \neg C, D) &=& (0.5)P(D|A,B,\neg C) + (0.5)P(D|A,\neg B,\neg C)\\
+&=& 0.5*0.9 + 0.5*0.1 = 0.5\\
+f_B(A, \neg C, \neg D) &=& (0.5)P(\neg D|A,B,\neg C) + (0.5)P(\neg D|A,\neg B,\neg C)\\
+&=& 0.5*0.1 + 0.5*0.9 = 0.5\\
+f_B(\neg A, C, D) &=& (0.1)P(D|\neg A,B,C) + (0.9)P(D|\neg A,\neg B,C)\\
+&=& 0.1*0.3 + 0.9*0.7 = 0.66\\
+f_B(\neg A, C, \neg D) &=& (0.1)P(\neg D|\neg A,B,C) + (0.9)P(\neg D|\neg A,\neg B,C)\\
+&=& 0.1*0.7 + 0.9*0.3 = 0.34\\
+f_B(\neg A, \neg C, D) &=& (0.1)P(D|\neg A,B,\neg C) + (0.9)P(D|\neg A,\neg B,\neg C)\\
+&=& 0.1*0.5 + 0.9*0.6 = 0.59\\
+f_B(\neg A, \neg C, \neg D) &=& (0.1)P(\neg D|\neg A,B,\neg C) + (0.9)P(\neg D|\neg A,\neg B,\neg C)\\
+&=& 0.1*0.5 + 0.9*0.4 = 0.41\\
+\\
 P(A, C, E, F) &=& \sum_D P(A)P(C)P(E|D)P(F|D)f_B(A, C, D)\\
-
+\\
 f_A(C, D)  &=& \sum_A P(A)f_B(A, C, D)\\
-f_A(C, D) &=& (0.6)f_B(A, C, D) + (0.4)f_B(\neg A, C, D)
-f_A(C, \neg D) &=& (0.6)f_B(A, C, \neg D) + (0.4)f_B(\neg A, C, \neg D)
-f_A(\neg C, \neg D) &=& (0.6)f_B(A, \neg C, \neg D) + (0.4)f_B(\neg A, \neg C, \neg D)
-f_A(\neg C, D) &=& (0.6)f_B(A, \neg C, D) + (0.4)f_B(\neg A, \neg C, D)
-
+f_A(C, D) &=& (0.6)f_B(A, C, D) + (0.4)f_B(\neg A, C, D)\\
+&=& 0.6*0.35 + 0.4*0.66 = 0.474\\
+f_A(C, \neg D) &=& (0.6)f_B(A, C, \neg D) + (0.4)f_B(\neg A, C, \neg D)\\
+&=& 0.6*0.65 + 0.4*0.34 = 0.526\\
+f_A(\neg C, \neg D) &=& (0.6)f_B(A, \neg C, \neg D) + (0.4)f_B(\neg A, \neg C, \neg D)\\
+&=& 0.6*0.5 + 0.4*0.41 = 0.464\\
+f_A(\neg C, D) &=& (0.6)f_B(A, \neg C, D) + (0.4)f_B(\neg A, \neg C, D)\\
+&=& 0.6*0.5 + 0.4*0.59 = 0.536\\
+\\
 P(C, E, F) &=& \sum_D P(C)P(E|D)P(F|D)f_A(C, D)\\
-
+\\
 f_C(D) &=& \sum_C P(C)f_A(C, D)\\
 f_C(D) &=& (0.8)f_A(C, D) + (0.2)f_A(\neg C, D)\\
+&=& 0.8*0.474 + 0.2*0.536 = 0.4864\\
 f_C(\neg D) &=& (0.8)f_A(C, \neg D) + (0.2)f_A(\neg C, \neg D)\\
-
-P(E, F) &=& \sum_D P(E|D)P(F|D)f_C(D)\\
-
-&=& (0.5)(0.9)f_C(D) + (0.6)(0.8)f_C(\neg D)
-
-P(E, F) &=& \sum_D P(E|D)P(F|D)(\sum_C P(C)f_A(C, D))\\
-P(E, F) &=& \sum_D P(E|D)P(F|D)(\sum_C P(C)( \sum_A P(A)f_B(A, C, D)))\\
-P(E, F) &=& \sum_D P(E|D)P(F|D)(\sum_C P(C)( \sum_A P(A)(\sum_B P(B|A)P(D|A,B,C)))\\
-P(E, F) &=& \sum_D P(E|D)P(F|D)(\sum_C P(C)( \sum_A P(A)(P(B|A)P(D|A,B,C) + (1-P(B|A))P(D|A,\neg B,C)))\\
+&=& 0.8*0.526 + 0.2*0.464 = 0.5136\\
 \end{eqnarray*}
+
+\begin{eqnarray*}
+P(E, F) &=& \sum_D P(E|D)P(F|D)f_C(D)\\
+&=& (0.5)(0.9)f_C(D) + (0.6)(0.8)f_C(\neg D)\\
+&=& 0.5*0.9*0.4864 + 0.6*0.8*0.5136\\
+&=& 0.465408\\
+\end{eqnarray*}
+
+So, we have performed elimination in the given order and solved for $P(E, F)$. 
 
 \part{3}
 \part{4}
