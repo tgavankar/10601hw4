@@ -92,39 +92,38 @@ P(A, B, C, E, F) &=& P(A)P(B|A)P(C)f_D(A, B, C, E, F)\\
 \part{2}
 \begin{eqnarray*}
 f_D(A, B, C, E, F) &=& \sum_D P(D|A,B,C)P(E|D)P(F|D)\\
-f_D(A, B, C, E, F) &=& 0.6*0.5*0.9 + 0.4*0.6*0.8
-f_D(A, B, \neg C, E, F) &=& 0.9*0.5*0.9+.41*0.6*0.8\\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-f_D(A, \neg B, C, E, F) &=&
-f_D(A, \neg B, \neg C, E, F) &=&
-f_D(\neg A, B, C, E, F) &=&
-f_D(\neg A, B, \neg C, E, F) &=&
-f_D(\neg A, \neg B, C, E, F) &=&
-f_D(\neg A, \neg B, \neg C, E, F) &=&
+f_D(A, B, C, E, F) &=& 0.6*0.5*0.9 + 0.4*0.6*0.8 = 0.462\\
+f_D(A, B, \neg C, E, F) &=& 0.9*0.5*0.9+0.1*0.6*0.8 = 0.453\\
+f_D(A, \neg B, C, E, F) &=& 0.1*0.5*0.9 + 0.9*0.6*0.8 = 0.477\\
+f_D(A, \neg B, \neg C, E, F) &=& 0.1*0.5*0.9+0.9*0.6*0.8 = 0.477\\
+f_D(\neg A, B, C, E, F) &=& 0.3*0.5*0.9+0.7*0.6*0.8 = 0.471\\
+f_D(\neg A, B, \neg C, E, F) &=& 0.5*0.5*0.9+0.5*0.6*0.8 = 0.465\\
+f_D(\neg A, \neg B, C, E, F) &=& 0.7*0.5*0.9+0.3*0.6*0.8 = 0.459\\
+f_D(\neg A, \neg B, \neg C, E, F) &=& 0.6*0.5*0.9+0.4*0.6*0.8 = 0.462\\
 \end{eqnarray*}
 
 \begin{eqnarray*}
 P(A, B, C, E, F) &=& P(A)P(B|A)P(C)f_D(A, B, C, E, F)\\
 \\
 f_B(A, C, E, F) &=& \sum_B P(B|A)f_D(A, B, C, E, F)\\
-f_B(A, C, E, F) &=& 0.5*f_D(A, B, C, E, F) + 0.5*f_D(A, \neg B, C, E, F)
-f_B(\neg A, C, E, F) &=& 0.1*f_D(\neg A, B, C, E, F) + 0.9*f_D(\neg A, \neg B, C, E, F)
-f_B(A, \neg C, E, F) &=& 0.5*f_D(A, B, \neg C, E, F) + 0.5*f_D(A, \neg B, \neg C, E, F)
-f_B(\neg A, \neg C, E, F) &=& 0.1* f_D(\neg A, B, \neg C, \neg C, E, F) + 0.9*f_D(\neg A, \neg B, \neg C, E, F)
+f_B(A, C, E, F) &=& 0.5*0.462 + 0.5*0.477 = 0.4695\\
+f_B(\neg A, C, E, F) &=& 0.1*0.471 + 0.9*0.459 = 0.4602\\
+f_B(A, \neg C, E, F) &=& 0.5*0.453 + 0.5*0.477 = 0.465\\
+f_B(\neg A, \neg C, E, F) &=& 0.1* 0.465 + 0.9*0.462 = 0.4623\\
 \\
 P(A, C, E, F) &=&  P(A)P(C)f_B(A, C, E, F)\\
 \\
 f_A(C, E, F)  &=& \sum_A P(A)f_B(A, C, E, F)\\
-f_A(C, E, F) &=& 0.6*f_B(A, C, E, F) + 0.4*f_B(\neg A, C, E, F)
-f_A(\neg C, E, F) &=& 0.6*f_B(A, \neg C, E, F) + 0.4*f_B(\neg A, \neg C, E, F)
+f_A(C, E, F) &=& 0.6*0.4695 + 0.4*0.4602 = 0.46578\\
+f_A(\neg C, E, F) &=& 0.6*0.465 + 0.4*0.4623 = 0.46392\\
 \\
 P(C, E, F) &=& P(C)f_A(C, E, F)\\
 \\
 f_C(E, F) &=& \sum_C P(C)f_A(C, E, F)\\
-&=& 0.8*f_A(C, E, F) + 0.2*f_A(\neg C, E, F)
-
-
+&=& 0.8*0.46578 + 0.2*0.46392 = 0.465408\\
+\\
 P(E, F) &=& f_C(E, F)\\
-
+&=& 0.465408\\
 \end{eqnarray*}
 
 
@@ -132,9 +131,82 @@ P(E, F) &=& f_C(E, F)\\
 So, we have performed elimination in the given order and solved for $P(E, F)$. 
 
 \part{3}
+\begin{eqnarray*}
+P(A, B, C, D, E, F) &=& P(A)P(B|A)P(C)P(D|A,B,C)P(E|D)P(F|D)\\
+f_A(B, C, D) &=& \sum_A P(A)P(B|A)P(D|A,B,C)\\
+f_A(B, C, D) &=& 0.6*0.5*0.6 + 0.4*0.1*0.3 = 0.192\\
+f_A(B, C, \neg D) &=& 0.6*0.5*0.4+0.4*0.1*0.7 = 0.148\\
+f_A(B, \neg C, D) &=& 0.6*0.5*0.9+0.4*0.1*0.5 = 0.29\\
+f_A(B, \neg C, \neg D) &=& 0.6*0.5*0.1+0.4*0.1*0.5 = 0.05\\
+f_A(\neg B, C, D) &=& 0.6*0.5*0.1+0.4*0.9*0.7 = 0.282\\
+f_A(\neg B, C,\neg  D) &=& 0.6*0.5*0.9+0.4*0.9*0.3 = 0.378\\
+f_A(\neg B, \neg C, D) &=& 0.6*0.5*0.1+0.4*0.9*0.6 = 0.246\\
+f_A(\neg B, \neg C, \neg D) &=& 0.6*0.5*0.9+0.4*0.9*0.4 = 0.414\\
+\\
+P(B, C, D, E, F) &=& P(C)P(E|D)P(F|D)f_A(B, C, D)\\
+\\
+f_B(C, D) &=& \sum_B f_A(B, C, D)\\
+f_B(C, D) &=& 0.192 + 0.282 = 0.474\\
+f_B(C, \neg D) &=& 0.148 + 0.378 = 0.526\\
+f_B(\neg C, D) &=& 0.29 + 0.246 = 0.536\\
+f_B(\neg C, \neg D) &=& 0.05 + 0.414 = 0.464\\
+\\
+P(C, D, E, F) &=& P(C)P(E|D)P(F|D)f_B(C, D)\\
+\\
+f_C(D) &=& \sum_C P(C)f_B(C, D)\\
+f_C(D) &=& 0.8 * 0.474 + 0.2 * 0.536 = 0.4864\\
+f_C(\neg D) &=& 0.8 * 0.526 + 0.2 * 0.464 = 0.5136\\
+\\
+P(D, E, F) &=& P(E|D)P(F|D)f_C(D)\\
+\\
+f_D(E, F) &=& \sum_D P(E|D)P(F|D)f_C(D)\\
+&=& 0.5*0.9*0.4864 + 0.6*0.8*0.5136 = 0.465408\\
+\\
+P(E, F) &=& f_D(E, F)\\
+&=& 0.465408\\
+\end{eqnarray*}
+
 \part{4}
+The order of elimination does not affect the final result. However, the order of the variables does affect computational efficiency. For example, in the second ordering, there were no multiplications (only additions) in the B-elimination step. Note that in the first version, every elimination had both multiplication and addition.
 
 \question{1.c}{Bayesian Network: Constructing a Network}
+\includegraphics{1c.png}\\
+
+There are 3 different nets that satisfy this joint probability table. To figure this out, marginal probabilties were calculated to see if there were any conditional independences found in the data. It was determined that X is conditionally independent from Y. So, the net above was generated and checked to have the following values.
+
+    \begin{tabular}{|l|l|}
+        \hline
+        Y & P(Y) \\ \hline
+        0 & 0.7  \\ 
+        1 & 0.3  \\
+        \hline
+    \end{tabular}
+
+
+    \begin{tabular}{|l|l|l|}
+        \hline
+        Y & Z & P(Z$|$Y) \\ \hline
+        0 & 0 & 0.26   \\ 
+        1 & 0 & 0.5    \\ 
+        0 & 1 & 0.74   \\ 
+        1 & 1 & 0.5    \\
+        \hline
+    \end{tabular}
+
+
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        Y & Z & X & P(X$|$Y,Z) \\ \hline
+        0 & 0 & 0 & 0.230769 \\ 
+        0 & 1 & 0 & 0.72973  \\ 
+        1 & 0 & 0 & 0.36     \\ 
+        1 & 1 & 0 & 0.84     \\ 
+        0 & 0 & 1 & 0.769231 \\ 
+        0 & 1 & 1 & 0.27027  \\ 
+        1 & 0 & 1 & 0.64     \\ 
+        1 & 1 & 1 & 0.16 \\  \\
+        \hline
+    \end{tabular}
 
 \question{2.a}{Clustering: Heirarchical Clustering}
 \part{1}\\
@@ -229,7 +301,7 @@ The algorithm converges much, much earlier (17 iterations instead of ~60) than w
 \includegraphics{q4c.png}\\
 
 \part{4}
-\begin{table}
+
     \begin{tabular}{|c|c|c|}
         \hline
         K  & Accuracy & Objective Function Score \\ \hline
@@ -240,7 +312,7 @@ The algorithm converges much, much earlier (17 iterations instead of ~60) than w
         20 & 0.733    & 695375664                \\
         \hline
     \end{tabular}
-\end{table}
+
 
 \part{5}
 By looking at the true labels, it seems like there were only 10 clusters (as there were only 10 labels, 0-9). The labels of the clusters when $k=10$ were relatively evenly distributed (0-9, with the exception of label 5 being replaced with 7). At higher $k$ values, there were many more duplicates that were not evenly distributed, meaning it seemed that the data was overfit and it was splitting an existing large cluster into smaller clusters to account for the larger value of $k$. So, it seems like 10 clusters would be the optimal number, providing that good starting points were chosen. However, because of the way we actually label the clusters after clustering (using the highest count true label to label the entire cluster), we get better accuracy as the number of clusters increase (most likely due to overfitting on the training data - which we want to avoid). Also, it is logical to assume that the final objective function score will decrease as the number of clusters increase because, with more centroids, in general, the distance between a point and it's corresponding cluster's centroid will decrease. This means that the overall objective function will also decrease. 

@@ -118,8 +118,7 @@ def main(currRound=0):
         for l in ftrue:
             trueLabels.append(int(l))
 
-        # Save output to CSV file.
-
+        # Get predicted labels in proper order
         out = []
         for ci in xrange(len(clusters)):
             trueCMap = defaultdict(int)
@@ -140,15 +139,18 @@ def main(currRound=0):
 
         out.sort(key=lambda tup: tup[0])
 
-    with open('true.txt') as ftrue, file("out.txt", 'w') as fout, file("readings.txt", 'a') as accFile:
-        for p in out:
-            print >> fout, p[1]
-        count = 0.0
-        for line in itertools.izip(out, ftrue):
-            if line[0][1] == int(line[1]):
-                count += 1.0
+        # Reset file buffer pointer
+        ftrue.seek(0)
 
-        print "Accuracy: %f, ObjScore: %f" % (count / len(out), objFunc(clusters))
+        with file("out%d.txt" % currRound, 'w') as fout:
+            for p in out:
+                print >> fout, p[1]
+            count = 0.0
+            for line in itertools.izip(out, ftrue):
+                if line[0][1] == int(line[1]):
+                    count += 1.0
+
+            print "Accuracy: %f, ObjScore: %f" % (count / len(out), objFunc(clusters))
         
 
 
