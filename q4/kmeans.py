@@ -1,3 +1,7 @@
+# Tanay Gavankar
+# 10-601 HW4 Q4
+# K-Means Clustering Implementation
+
 from collections import defaultdict
 
 import csv

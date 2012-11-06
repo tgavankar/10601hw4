@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.9.12)  5 NOV 2012 19:58
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.9.12)  5 NOV 2012 20:15
 entering extended mode
 **C:/Users/Tanay/Documents/Project*Folder/CMU*Semester*(07)/10-601/hw4/hw4.tex
 ("C:/Users/Tanay/Documents/Project Folder/CMU Semester (07)/10-601/hw4/hw4.tex"
@@ -264,7 +264,7 @@ g>] [10]
 Here is how much of TeX's memory you used:
  2156 strings out of 494045
  26397 string characters out of 3148387
- 91749 words of memory out of 3000000
+ 91740 words of memory out of 3000000
  5449 multiletter control sequences out of 15000+200000
  8894 words of font info for 34 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
@@ -278,7 +278,7 @@ onts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.
 pfb>
-Output written on hw4.pdf (10 pages, 151130 bytes).
+Output written on hw4.pdf (10 pages, 149701 bytes).
 PDF statistics:
  76 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
